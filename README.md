@@ -1,10 +1,10 @@
 # typst-bot
 Typst bot for Telegam Messenger. 
 
-This bot generates images written in typst markdown language.
+This bot generates images from code written in typst markdown language.
 
-Works both in inline mode and private messages
-
+Works both in inline mode and in private messages.
+ 
 ### Features
 + Generate images from typst in inline mode
     ```@typst_bot mat(1, 0; 0, 1)```.
