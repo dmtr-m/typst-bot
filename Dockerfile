@@ -8,14 +8,11 @@ ENV PIP_NO_CACHE_DIR=off
 ENV PIP_DISABLE_PIP_VERSION_CHECK=on
 ENV PIP_DEFAULT_TIMEOUT=100
 
-# Env vars
-ENV TELEGRAM_TOKEN ${TELEGRAM_TOKEN}
-
 RUN apt-get update
 RUN apt-get install -y libpoppler-dev
 RUN apt-get install -y python3 python3-pip python3-dev python3-venv poppler-utils
 
-RUN mkdir -p /codebase /storage
+RUN mkdir -p /codebase
 ADD . /codebase
 WORKDIR /codebase
 

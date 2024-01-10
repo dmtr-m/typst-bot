@@ -5,9 +5,6 @@ services:
     build:
       context: "."
       dockerfile: Dockerfile
-    environment:
-      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
     volumes:
       - "/codebase:/codebase/src"
-      - "/storage:/storage"
     restart: always
