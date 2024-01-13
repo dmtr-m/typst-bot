@@ -36,7 +36,25 @@ async def start(update, _):
     )
 
 
-def TYPST_COMPILATION_ERROR_MESSAGE(suggestion=''):
+def TYPST_COMPILATION_ERROR_MESSAGE():
+    """
+    Composes Error message to the inline mode
+    """
+    error_discription = [
+        InlineQueryResultArticle(
+            id = uuid4(),
+            title = "Error",
+            description = f"Error while compiling your Typst code.",
+            input_message_content = InputTextMessageContent(
+                message_text = \
+                    f"Error while compiling your Typst code."
+            ),
+        )
+    ]
+    return error_discription
+
+
+def TYPST_COMPILATION_ERROR_MESSAGE_WITH_SUGGESTION(suggestion=''):
     """
     Composes Error message to the inline mode
     """
@@ -118,7 +136,7 @@ async def inlinequery(update, _) -> None:
             ### Needs to be fixed
             if len(e.args) > 0 and e.args[0].startswith('error:'):
                 suggestion = e.args[0].split('\n')[0]
-                error_message = TYPST_COMPILATION_ERROR_MESSAGE(
+                error_message = TYPST_COMPILATION_ERROR_MESSAGE_WITH_SUGGESTION(
                     suggestion.capitalize()
                 )
             else:
