@@ -152,17 +152,18 @@ async def last_query(update, _):
     query = history.recent_query(update.message.chat.id)
     if query == 0:
         await update.message.reply_text(
-            '<i>Sorry...\nThere are no recent queries stored</i>',
-            parse_mode='HTML',
+            '*Sorry...\nThere are no recent queries stored*',
+            parse_mode='MarkdownV2',
         )
     else:
         await update.message.reply_text(
             'This is your previous query:',
-            parse_mode='HTML',
+            parse_mode='MarkdownV2',
         )
+        query = query.replace('(', '\(').replace(')', '\)').replace('`', '\`')
         await update.message.reply_text(
-            f'<code>{query}</code>',
-            parse_mode='HTML'
+            f'`{query}`',
+            parse_mode='MarkdownV2'
         )
 
 
@@ -181,9 +182,9 @@ async def query_through_message(update, _):
             suggestion = suggestion.capitalize()
 
         await update.message.reply_text(
-            f'<i>Error while compiling your Typst code.</i> \
-                \n\n<u>{suggestion}</u>',
-            parse_mode='HTML',
+            f'*Error while compiling your Typst code\.* \
+                \n\n{suggestion}',
+            parse_mode='MarkdownV2',
         )
 
 
